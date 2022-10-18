@@ -15,6 +15,6 @@ st.text('🥑🍞 Avocado Toast')
 
 st.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 # Item picker
-st.multiselect('Pick some fruits:', list(my_fruit_list.index))
+st.multiselect('Pick some fruits:', list(my_fruit_list.index),['Avocado','Strawberries'])
 # Available items
 st.dataframe(my_fruit_list)
