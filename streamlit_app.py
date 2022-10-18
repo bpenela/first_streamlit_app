@@ -41,5 +41,5 @@ st.dataframe(my_data_rows)
 
 add_my_fruit = st.text_input('What fruit would you like to add')
 if (add_my_fruit != ''):
-  my_cur.execute('insert into fruit_load_list values ('+ add_my_fruit +');')
+  my_cur.execute("insert into fruit_load_list values ('"+ add_my_fruit +"');")
   st.write('Thanks for adding ', add_my_fruit)
