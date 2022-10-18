@@ -5,7 +5,7 @@ import requests as rq
 #Variables
 my_fruit_list = pd.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt')
 my_fruit_list = my_fruit_list.set_index('Fruit')
-fruityvice_response = rq.get("https://fruityvice.com/api/fruit/watermelon")
+fruityvice_response = rq.get('https://fruityvice.com/api/fruit/' + 'kiwi')
 
 st.title('Bruno & Di Restaurant')
 
@@ -24,6 +24,5 @@ if (len(fruits_to_show) > 0):
   st.dataframe(fruits_to_show)
 
 st.header('Fruityvice Fruit Advice')
-st.text(fruityvice_response.json())
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 st.dataframe(fruityvice_normalized)
