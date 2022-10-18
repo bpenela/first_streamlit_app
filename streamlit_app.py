@@ -25,6 +25,7 @@ if (len(fruits_to_show) > 0):
 
 st.header('Fruityvice Fruit Advice')
 fruit_choice = st.text_input('What fruit would you like information about?','Kiwi')
+fruityvice_response = rq.get('https://fruityvice.com/api/fruit/' + fruit_choice)
 st.write('The user entered ', fruit_choice)
 
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
