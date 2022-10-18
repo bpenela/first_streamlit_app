@@ -22,5 +22,6 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # Choosen Items
 if (len(fruits_to_show) > 0):
   st.dataframe(fruits_to_show)
- 
-st.text(fruityvice_response)
+
+st.header('Fruityvice Fruit Advice')
+st.text(fruityvice_response.json())
