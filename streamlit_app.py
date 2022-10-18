@@ -30,11 +30,11 @@ try:
   fruit_choice = st.text_input('What fruit would you like information about?')
   if not fruit_choice:
     st.error('Please select a fruit to get information')
-   else:
-    fruityvice_response = rq.get('https://fruityvice.com/api/fruit/' + fruit_choice)
-    st.write('The user entered ', fruit_choice)
-    fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-    st.dataframe(fruityvice_normalized)
+ else:
+  fruityvice_response = rq.get('https://fruityvice.com/api/fruit/' + fruit_choice)
+  st.write('The user entered ', fruit_choice)
+  fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+  st.dataframe(fruityvice_normalized)
 
 except URLError as e:
   st.error()
