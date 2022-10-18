@@ -59,3 +59,5 @@ try:
   else:
     my_cur.execute("insert into fruit_load_list values ('"+ add_my_fruit +"');")
     st.write('Thanks for adding ', add_my_fruit)
+except URLError as e:
+  st.error()
