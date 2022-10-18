@@ -9,6 +9,12 @@ my_fruit_list = pd.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/da
 my_fruit_list = my_fruit_list.set_index('Fruit')
 fruityvice_response = rq.get('https://fruityvice.com/api/fruit/' + 'kiwi')
 
+#Functions
+def get_fruityvice_data(this_fruit_choice):
+  fruityvice_response = rq.get('https://fruityvice.com/api/fruit/' + fruit_choice)
+  fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+  return fruityvice_normalized
+
 st.title('Bruno & Di Restaurant')
 
 st.header(' Breakfast Favorites')
@@ -25,17 +31,17 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 if (len(fruits_to_show) > 0):
   st.dataframe(fruits_to_show)
 
+  
+  
 st.header('Fruityvice Fruit Advice')
 try:
   fruit_choice = st.text_input('What fruit would you like information about?')
   if not fruit_choice:
     st.error('Please select a fruit to get information')
   else:
-    fruityvice_response = rq.get('https://fruityvice.com/api/fruit/' + fruit_choice)
-    st.write('The user entered ', fruit_choice)
-    fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-    st.dataframe(fruityvice_normalized)
-
+    back_from_funcion = get_fruityvice_data(fruit_choice)
+    st.dataframe(back_from_funcion)
+    
 except URLError as e:
   st.error()
 
