@@ -16,9 +16,15 @@ def get_fruityvice_data(this_fruit_choice):
   return fruityvice_normalized
 
 def get_fruit_load_list():
-    with my_cnx.cursor() as my_cur:
-      my_cur.execute("select * from fruit_load_list")
-      return my_cur.fetchall()
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("select * from fruit_load_list")
+    return my_cur.fetchall()
+
+def insert_rows_snowflake(new_fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("insert into fruit_load_list values ('"+ add_my_fruit +"');")
+    return ('Thanks for adding '+ add_my_fruit)
+
 
 st.title('Bruno & Di Restaurant')
 
@@ -51,18 +57,15 @@ except URLError as e:
   st.error()
 
 st.header('The fruit load list contains:')
-if st.button ('Get Fruit Load List'):
+if :
   my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
   my_data_rows = get_fruit_load_list()
   st.dataframe(my_data_rows)
 
+add_my_fruit = st.text_input('What fruit would you like to add')
+if st.button ('Add  a Fruit to the List'):
+    my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+    back_from_function =  insert_rows_snowflake(add_my_fruit)
+    st.text(back_from_function)
 
-try:
-  add_my_fruit = st.text_input('What fruit would you like to add')
-  if not add_my_fruit:
-    st.error('Please select a fruit to add')
-  else:
-    my_cur.execute("insert into fruit_load_list values ('"+ add_my_fruit +"');")
-    st.write('Thanks for adding ', add_my_fruit)
-except URLError as e:
-  st.error()
+
